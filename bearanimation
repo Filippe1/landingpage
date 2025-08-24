@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cute Animated Bear</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+            overflow: hidden;
+        }
+
+        .scene {
+            position: relative;
+            width: 400px;
+            height: 400px;
+        }
+
+        /* Bear container */
+        .bear {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: bounce 2s infinite alternate;
+        }
+
+        /* Head */
+        .head {
+            position: relative;
+            width: 120px;
+            height: 110px;
+            background-color: #8B4513;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        /* Ears */
+        .ear {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            background-color: #8B4513;
+            border-radius: 50%;
+            top: -15px;
+            z-index: 5;
+        }
+
+        .ear.left {
+            left: 10px;
+        }
+
+        .ear.right {
+            right: 10px;
+        }
+
+        .ear::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: #A57147;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        /* Face */
+        .face {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 70px;
+            height: 60px;
+            background-color: #D2B48C;
+            border-radius: 50%;
+        }
+
+        /* Eyes */
+        .eye {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #000;
+            border-radius: 50%;
+            top: 20px;
+            animation: blink 4s infinite;
+        }
+
+        .eye.left {
+            left: 20px;
+        }
+
+        .eye.right {
+            right: 20px;
+        }
+
+        /* Nose */
+        .nose {
+            position: absolute;
+            width: 20px;
+            height: 12px;
+            background-color: #000;
+            border-radius: 50%;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Mouth */
+        .mouth {
+            position: absolute;
+            width: 20px;
+            height: 8px;
+            background-color: #000;
+            border-radius: 0 0 10px 10px;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Body */
+        .body {
+            position: absolute;
+            width: 140px;
+            height: 130px;
+            background-color: #8B4513;
+            border-radius: 60px 60px 50px 50px;
+            top: 90px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 5;
+        }
+
+        /* Arms */
+        .arm {
+            position: absolute;
+            width: 40px;
+            height: 70px;
+            background-color: #8B4513;
+            border-radius: 20px;
+            top: 100px;
+            z-index: 4;
+            animation: wave 3s infinite;
+        }
+
+        .arm.left {
+            left: -5px;
+            transform-origin: top center;
+            z-index: 7;
+        }
+
+        .arm.right {
+            right: -5px;
+            transform-origin: top center;
+            animation-delay: 1.5s;
+            z-index: 7;
+        }
+
+        /* Legs */
+        .leg {
+            position: absolute;
+            width: 45px;
+            height: 50px;
+            background-color: #8B4513;
+            border-radius: 20px;
+            bottom: -125px;
+            z-index: 6;
+        }
+
+        .leg.left {
+            left: 0px;
+        }
+
+        .leg.right {
+            right: 0px;
+        }
+
+        /* Tummy */
+        .tummy {
+            position: absolute;
+            width: 80px;
+            height: 70px;
+            background-color: #D2B48C;
+            border-radius: 40px;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 6;
+        }
+
+        /* Animations */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, -50%);
+            }
+            50% {
+                transform: translate(-50%, -55%);
+            }
+        }
+
+        @keyframes wave {
+            0%, 100% {
+                transform: rotate(0deg);
+            }
+            25% {
+                transform: rotate(15deg);
+            }
+            75% {
+                transform: rotate(-30deg);
+            }
+        }
+
+        @keyframes blink {
+            0%, 95%, 100% {
+                height: 12px;
+            }
+            97%, 98% {
+                height: 2px;
+            }
+        }
+
+        /* Decorative elements */
+        .cloud {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0.8;
+        }
+
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+        }
+
+        .cloud1 {
+            width: 60px;
+            height: 30px;
+            top: 50px;
+            left: 50px;
+            animation: float 20s infinite linear;
+        }
+
+        .cloud1::before {
+            width: 30px;
+            height: 30px;
+            top: -15px;
+            left: 10px;
+        }
+
+        .cloud1::after {
+            width: 40px;
+            height: 40px;
+            top: -10px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 80px;
+            height: 40px;
+            top: 100px;
+            right: 60px;
+            animation: float 25s infinite linear reverse;
+        }
+
+        .cloud2::before {
+            width: 40px;
+            height: 40px;
+            top: -20px;
+            left: 10px;
+        }
+
+        .cloud2::after {
+            width: 50px;
+            height: 50px;
+            top: -15px;
+            right: 10px;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateX(-100px);
+            }
+            to {
+                transform: translateX(500px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+        
+        <div class="bear">
+            <div class="head">
+                <div class="ear left"></div>
+                <div class="ear right"></div>
+                <div class="face">
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+                    <div class="nose"></div>
+                    <div class="mouth"></div>
+                </div>
+            </div>
+            <div class="body">
+                <div class="tummy"></div>
+            </div>
+            <div class="arm left"></div>
+            <div class="arm right"></div>
+            <div class="leg left"></div>
+            <div class="leg right"></div>
+        </div>
+    </div>
+</body>
+</html>
